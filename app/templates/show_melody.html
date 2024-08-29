@@ -1,0 +1,21 @@
+<a href="../../">На главную страницу</a>
+<br />
+<h2> {{melody.name}} </h2>
+<p>{{melody.comment}}</p>
+<h3> URLs: </h3>
+{% for u in urls %}
+<a href="{{u.url}}">{{u.url}}</a> <br />
+{% endfor %}
+
+<h3> Tabs: </h3>
+{% for t in tabs %}
+<pre> {{t.tab}} </pre>
+<a href="../../tab_edit/{{t.id}}">Изменить</a>
+{% endfor %}
+
+<h3> Images: </h3>
+{% for i in images %}
+<img src=/media/{{i.path}} alt="no image" style="max-height:1000px">
+<p>{{i.order_num}} | {{i.image_comment}}</p>
+{% endfor %}
+

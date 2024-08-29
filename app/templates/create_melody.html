@@ -1,0 +1,29 @@
+<a href="../">На главную страницу</a>
+<br />
+<h3> Create melody: </h3>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+    {{ form_melody.as_p }}
+    {{ form_url.as_p }}
+    {{ form_tab.as_p }}
+    {{ form_img.as_p }}
+  <button type="submit">Upload</button>
+</form>
+<br />
+<br />
+{% if melody_obj %}
+    <h3>Succesfully created: {{melody_obj.name}}</h3>
+{% endif %}
+
+{% if url_obj %}
+    <p> {{ url_obj.url}} </p>
+{% endif %}
+
+{% if tab_obj %}
+    <pre> {{ tab_obj.tab}} </pre>
+{% endif %}
+
+{% if img_obj and img_obj.path %}
+    <img src="{{ img_obj.path.url}}" alt="no image" style="max-height:1000px">
+    <p> {{ img_obj.order_num}} | {{ img_obj.image_comment}} </p>
+{% endif %}

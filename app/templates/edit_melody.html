@@ -1,0 +1,33 @@
+<a href="../../">На главную страницу</a>
+<br />
+<h2>Изменение таба мелодии: {{melody.name}} </h2>
+<form method="POST">
+    {% csrf_token %}
+    <p>
+        <label>Изменить название мелодии:</label><br>
+        <input type="text" name="melody_name" value="{{melody.name}}" />
+        <input type="submit" value="Изменить" >
+    </p>
+
+
+<form method="POST">
+    {% csrf_token %}
+    <p>
+        <label>Изменить комментарий к мелодии:</label><br>
+        <input type="text" name="melody_comment" value="{{melody.comment}}" />
+        <input type="submit" value="Изменить" >
+    </p>
+</form>
+
+<!--    <h3> URLs: </h3>-->
+<!--    {% for u in urls %}-->
+<!--    <a href="{{u.url}}">{{u.url}}</a> <br />-->
+<!--    {% endfor %}-->
+<!--&lt;!&ndash;        <p>&ndash;&gt;-->
+<!--&lt;!&ndash;            <label>Редактируйте таб:</label><br>&ndash;&gt;-->
+<!--&lt;!&ndash;            <textarea class="input" name="tab" rows="10" cols="30">{{tab.tab}}</textarea>&ndash;&gt;-->
+<!--&lt;!&ndash;        </p>&ndash;&gt;-->
+<!--    <br />-->
+<!--    <br />-->
+
+
