@@ -72,7 +72,12 @@ def show_melody(request, id):
     melody = Melody.objects.filter(id=id)[0]
     urls = URL.objects.filter(melody_id=id)
     tabs = Tab.objects.filter(melody_id=id)
-    images = Image.objects.filter(melody_id=id)
+    # images = Image.objects.filter(melody_id=id)
+    images = Image.objects.filter(melody_id=id).order_by("order_num")
+
+    # for i in images:
+    #     print(i.order_num)
+
     return render(request, 'show_melody.html', {'melody': melody, 'urls': urls, 'tabs': tabs, 'images': images})
 
 def edit_melody(request, id):
@@ -80,19 +85,19 @@ def edit_melody(request, id):
     try:
         melody = Melody.objects.get(id=id)
         urls = URL.objects.filter(melody_id=id)
+        images = Image.objects.filter(melody_id=id)
 
         if request.method == "POST":
             melody.name = request.POST.get("melody_name")
             melody.comment = request.POST.get("melody_comment")
             melody.save()
 
-            # for u in urls:
-            #     u.url = request.POST.get("url")
-            #     u.save()
-
+            # image.order_num = request.POST.get("order_num")
+            # image.comment = request.POST.get("image_comment")
+            # image.save()
             return HttpResponseRedirect(f"/edit_melody/{id}")
         else:
-            return render(request, "edit_melody.html", {"melody": melody, "urls": urls})
+            return render(request, "edit_melody.html", {"melody": melody, "urls": urls, "images": images})
     except Tab.DoesNotExist:
         return HttpResponseNotFound("<h2>Melody not found</h2>")
 
@@ -117,3 +122,39 @@ def delete_url(request, melody_id, url_id):
         return HttpResponseRedirect(f"/edit_melody/{melody_id}")
     except Tab.DoesNotExist:
         return HttpResponseNotFound("<h2>Melody not found</h2>")
+
+def add_image(request, id):
+    if request.method == 'POST':
+        form_image = ImageForm(request.POST, request.FILES)
+
+        if form_image.is_valid():
+            new_img = form_image.save(commit=False)
+            new_img.melody_id = id
+            new_img = form_image.save()
+            img_obj = form_image.instance
+            return render(request, 'add_image.html', {'form_image': form_image, 'id': id})
+    else:
+        form_image = ImageForm()
+        return render(request, 'add_image.html', {'form_image': form_image, 'id':id})
+
+def delete_image(request, melody_id, image_id):
+    try:
+        image = Image.objects.get(id=image_id)
+        image.delete()
+        return HttpResponseRedirect(f"/edit_melody/{melody_id}")
+    except Tab.DoesNotExist:
+        return HttpResponseNotFound("<h2>Image not found</h2>")
+
+def edit_image(request, image_id):
+    try:
+        image = Image.objects.filter(id=id)
+
+        if request.method == "POST":
+            image.order_num = request.POST.get("order_num")
+            image.image_comment = request.POST.get("image_comment")
+            image.save()
+            return HttpResponseRedirect(f"/edit_image/{id}")
+        else:
+            return render(request, "edit_image.html", {"image": image})
+    except Image.DoesNotExist:
+        return HttpResponseNotFound("<h2>Image not found</h2>")

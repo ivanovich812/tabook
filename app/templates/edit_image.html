@@ -1,0 +1,9 @@
+<h3> Edit image: </h3>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+    {{ form_melody.as_p }}
+    {{ form_url.as_p }}
+    {{ form_tab.as_p }}
+    {{ form_img.as_p }}
+  <button type="submit">Upload</button>
+</form>
