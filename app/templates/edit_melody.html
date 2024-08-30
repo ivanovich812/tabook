@@ -1,33 +1,29 @@
 <a href="../../">На главную страницу</a>
 <br />
-<h2>Изменение таба мелодии: {{melody.name}} </h2>
+<h3>Изменение мелодии: {{melody.name}} (id-{{melody.id}})  </h3>
 <form method="POST">
     {% csrf_token %}
     <p>
-        <label>Изменить название мелодии:</label><br>
+        <label>Название:</label><br>
         <input type="text" name="melody_name" value="{{melody.name}}" />
         <input type="submit" value="Изменить" >
     </p>
-
-
-<form method="POST">
-    {% csrf_token %}
     <p>
-        <label>Изменить комментарий к мелодии:</label><br>
+        <label>Комментарий:</label><br>
         <input type="text" name="melody_comment" value="{{melody.comment}}" />
         <input type="submit" value="Изменить" >
     </p>
-</form>
+    <table>
+        <thead><th></th><th></th><th></th></thead>
+        {% for url in urls %}
+        <tr>
+            <td><a href="{{url.url}}">{{ url.url }}</a></td>
+            <td><a href="../../delete_url/{{url.melody_id}}/{{url.id}}">Удалить</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="../../add_url/{{melody.id}}">...добавить</a>
 
-<!--    <h3> URLs: </h3>-->
-<!--    {% for u in urls %}-->
-<!--    <a href="{{u.url}}">{{u.url}}</a> <br />-->
-<!--    {% endfor %}-->
-<!--&lt;!&ndash;        <p>&ndash;&gt;-->
-<!--&lt;!&ndash;            <label>Редактируйте таб:</label><br>&ndash;&gt;-->
-<!--&lt;!&ndash;            <textarea class="input" name="tab" rows="10" cols="30">{{tab.tab}}</textarea>&ndash;&gt;-->
-<!--&lt;!&ndash;        </p>&ndash;&gt;-->
-<!--    <br />-->
-<!--    <br />-->
+</form>
 
 

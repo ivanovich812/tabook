@@ -85,8 +85,35 @@ def edit_melody(request, id):
             melody.name = request.POST.get("melody_name")
             melody.comment = request.POST.get("melody_comment")
             melody.save()
+
+            # for u in urls:
+            #     u.url = request.POST.get("url")
+            #     u.save()
+
             return HttpResponseRedirect(f"/edit_melody/{id}")
         else:
             return render(request, "edit_melody.html", {"melody": melody, "urls": urls})
+    except Tab.DoesNotExist:
+        return HttpResponseNotFound("<h2>Melody not found</h2>")
+
+def add_url(request, id):
+    if request.method == 'POST':
+        form_url = URLForm(request.POST)
+
+        if form_url.is_valid():
+            new_url = form_url.save(commit=False)
+            new_url.melody_id = id
+            new_url = form_url.save()
+            url_obj = form_url.instance
+            return render(request, 'add_url.html', {'form_url': form_url, 'id': id})
+    else:
+        form_url = URLForm()
+        return render(request, 'add_url.html', {'form_url': form_url, 'id':id})
+
+def delete_url(request, melody_id, url_id):
+    try:
+        url = URL.objects.get(id=url_id)
+        url.delete()
+        return HttpResponseRedirect(f"/edit_melody/{melody_id}")
     except Tab.DoesNotExist:
         return HttpResponseNotFound("<h2>Melody not found</h2>")

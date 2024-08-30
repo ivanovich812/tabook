@@ -9,6 +9,8 @@ urlpatterns = [
     path('delete_melody/<int:id>/', views.delete_melody),
     path('show_melody/<int:id>/', views.show_melody),
     path('edit_melody/<int:id>/', views.edit_melody),
+    path('add_url/<int:id>/', views.add_url),
+    path('delete_url/<int:melody_id>/<int:url_id>', views.delete_url),
     ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,

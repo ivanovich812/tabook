@@ -1,0 +1,8 @@
+<a href="../../edit_melody/{{id}}">Назад</a>
+<br />
+<h3> Добавить URL: </h3>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+    {{ form_url.as_p }}
+  <button type="submit">Добавить</button>
+</form>
