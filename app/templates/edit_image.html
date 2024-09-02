@@ -1,9 +1,8 @@
-<h3> Edit image: </h3>
+<a href="../../../edit_melody/{{melody_id}}">Назад</a>
+<br />
+<h3> Изменить картинку: </h3>
 <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
-    {{ form_melody.as_p }}
-    {{ form_url.as_p }}
-    {{ form_tab.as_p }}
-    {{ form_img.as_p }}
-  <button type="submit">Upload</button>
+    {{ form_image.as_p }}
+  <button type="submit">Изменить</button>
 </form>

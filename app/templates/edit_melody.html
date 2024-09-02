@@ -1,6 +1,6 @@
 <a href="../../">На главную страницу</a>
 <br />
-<h3>Изменение мелодии: {{melody.name}} (id-{{melody.id}})  </h3>
+<h2>Изменение мелодии: {{melody.name}} (id-{{melody.id}})  </h2>
 
 <form method="POST">
     {% csrf_token %}
@@ -32,25 +32,8 @@
 
 {% for i in images %}
     <img src=/media/{{i.path}} alt="no image" style="max-height:1000px">
-    <p>#{{i.order_num}} | {{i.image_comment}}
-    <a href="../../edit_image/{{i.id}}">Изменить</a>
-    </p>
-
-    <!--<p>{{i.order_num}} | {{i.image_comment}}</p>-->
-<!--    <form method="POST">-->
-<!--        {% csrf_token %}-->
-<!--        <p>-->
-<!--            <label>№п/п:</label><br>-->
-<!--            <input type="text" name="order_num" value="{{i.order_num}}" />-->
-<!--            <input type="submit" value="Изменить" >-->
-<!--        </p>-->
-<!--        <p>-->
-<!--            <label>Комментарий:</label><br>-->
-<!--            <input type="text" name="image_comment" value="{{i.image_comment}}" />-->
-<!--            <input type="submit" value="Изменить" >-->
-<!--        </p>-->
-<!--    </form>-->
-    <a href="../../delete_image/{{i.melody_id}}/{{i.id}}">Удалить</a>
+    <p>#{{i.order_num}} | {{i.image_comment}}</p>
+    <a href="../../edit_image/{{melody.id}}/{{i.id}}">Изменить</a> | <a href="../../delete_image/{{i.melody_id}}/{{i.id}}">Удалить</a>
 
 <br />
 <br />
