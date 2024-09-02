@@ -85,7 +85,7 @@ def edit_melody(request, id):
     try:
         melody = Melody.objects.get(id=id)
         urls = URL.objects.filter(melody_id=id)
-        images = Image.objects.filter(melody_id=id)
+        images = Image.objects.filter(melody_id=id).order_by("order_num")
 
         if request.method == "POST":
             melody.name = request.POST.get("melody_name")
@@ -124,6 +124,12 @@ def delete_url(request, melody_id, url_id):
         return HttpResponseNotFound("<h2>Melody not found</h2>")
 
 def add_image(request, id):
+    images = Image.objects.filter(melody_id=id).order_by("order_num")
+    lst = []
+    for i in images:
+        lst.append(i.order_num)
+    max_order_num = max(lst)
+
     if request.method == 'POST':
         form_image = ImageForm(request.POST, request.FILES)
 
@@ -134,7 +140,7 @@ def add_image(request, id):
             img_obj = form_image.instance
             return render(request, 'add_image.html', {'form_image': form_image, 'id': id})
     else:
-        form_image = ImageForm()
+        form_image = ImageForm(initial={'order_num': max_order_num+1})
         return render(request, 'add_image.html', {'form_image': form_image, 'id':id})
 
 def delete_image(request, melody_id, image_id):
@@ -148,7 +154,6 @@ def delete_image(request, melody_id, image_id):
 def edit_image(request, melody_id, image_id):
     image = Image.objects.get(id=image_id)
     path = image.path
-    # print(path)
     if request.method == 'POST':
         form_image = ImageForm(request.POST, request.FILES)
 
