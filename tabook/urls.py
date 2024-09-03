@@ -14,6 +14,9 @@ urlpatterns = [
     path('add_image/<int:id>/', views.add_image),
     path('delete_image/<int:melody_id>/<int:image_id>', views.delete_image),
     path('edit_image/<int:melody_id>/<int:image_id>/', views.edit_image),
+    path('add_tab/<int:id>/', views.add_tab),
+    path('delete_tab/<int:melody_id>/<int:tab_id>', views.delete_tab),
+    path('edit_tab/<int:melody_id>/<int:tab_id>/', views.edit_tab),
     ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,

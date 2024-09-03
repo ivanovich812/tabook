@@ -1,6 +1,8 @@
-<a href="../../">На главную страницу</a>
+<a href="../../">ГЛАВНАЯ</a> | <a href="../../show_melody/{{melody.id}}">МЕЛОДИЯ</a> | ИЗМЕНИТЬ
+
 <br />
-<h2>Изменение мелодии: {{melody.name}} (id-{{melody.id}})  </h2>
+
+<h2>Изменение мелодии: {{melody.name}} (id-{{melody.id}}) <a href="../../show_melody/{{melody.id}}">...</a> </h2>
 
 <form method="POST">
     {% csrf_token %}
@@ -16,6 +18,7 @@
     </p>
 </form>
 
+<h3> URLs: <a href="../../add_url/{{melody.id}}">(+)</a> </h3>
 <table>
     <thead><th></th><th></th><th></th></thead>
     {% for url in urls %}
@@ -25,24 +28,23 @@
         </tr>
     {% endfor %}
 </table>
-<a href="../../add_url/{{melody.id}}">...добавить URL</a>
 
-<br />
-<br />
+<h3> Tabs: <a href="../../add_tab/{{melody.id}}">(+)</a> </h3>
+{% for t in tabs %}
+<pre> {{t.tab}} </pre>
+<a href="../../edit_tab/{{t.melody_id}}/{{t.id}}">Изменить</a> | <a href="../../delete_tab/{{t.melody_id}}/{{t.id}}">Удалить</a>
+{% endfor %}
 
+<h3> Images: <a href="../../add_image/{{melody.id}}">(+)</a> </h3>
 {% for i in images %}
     <img src=/media/{{i.path}} alt="no image" style="max-height:1000px">
     <p>#{{i.order_num}} | {{i.image_comment}}</p>
     <a href="../../edit_image/{{melody.id}}/{{i.id}}">Изменить</a> | <a href="../../delete_image/{{i.melody_id}}/{{i.id}}">Удалить</a>
 
 <br />
-<br />
 
 {% endfor %}
 
-<br />
-
-<a href="../../add_image/{{melody.id}}">...добавить картинку</a>
 
 
 

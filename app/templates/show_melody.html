@@ -1,4 +1,4 @@
-<a href="../../">ГЛАВНАЯ</a> | <a href="../../edit_melody/{{melody.id}}">Изменить</a>
+<a href="../../">ГЛАВНАЯ</a> | МЕЛОДИЯ | <a href="../../edit_melody/{{melody.id}}">ИЗМЕНИТЬ</a>
 <br />
 <h2> {{melody.name}} </h2>
 <p>{{melody.comment}}</p>
@@ -10,7 +10,6 @@
 <h3> Tabs: </h3>
 {% for t in tabs %}
 <pre> {{t.tab}} </pre>
-<a href="../../tab_edit/{{t.id}}">Изменить</a>
 {% endfor %}
 
 <h3> Images: </h3>

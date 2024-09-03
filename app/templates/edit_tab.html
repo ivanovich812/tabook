@@ -1,0 +1,8 @@
+<a href="../../../edit_melody/{{melody_id}}">Назад</a>
+<br />
+<h3> Изменить таб: </h3>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+    {{ form_tab.as_p }}
+  <button type="submit">Изменить</button>
+</form>
