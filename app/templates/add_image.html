@@ -1,8 +1,12 @@
-<a href="../../edit_melody/{{id}}">Назад</a>
+<a href="../../edit_melody/{{id}}"><<< НАЗАД</a>
 <br />
 <h3> Добавить картинку: </h3>
 <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
     {{ form_image.as_p }}
-  <button type="submit">Добавить</button>
+<!--    <button type="submit">Добавить</button>-->
+
+    <form action="../../edit_melody/{{id}}/">
+      <button type="submit">Click me</button>
+    </form>
 </form>
