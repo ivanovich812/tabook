@@ -4,9 +4,5 @@
 <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
     {{ form_image.as_p }}
-<!--    <button type="submit">Добавить</button>-->
-
-    <form action="../../edit_melody/{{id}}/">
-      <button type="submit">Click me</button>
-    </form>
+    <button type="submit">Добавить</button>
 </form>
