@@ -8,13 +8,14 @@
 <body>
     <h2>Список мелодий <a href="create_melody/">(+)</a> </h2>
 
-    <table style="font-size: 25px;">
+<!--    <table style="font-size: 25px;">-->
+    <table>
         <thead><th>Название</th><th>Тип</th><th>Дата</th><th></th><th>Комментарий</th></thead>
         {% for melody in melodies %}
         <tr>
             <td><a href="show_melody/{{melody.id}}">{{ melody.name }}</a></td>
             <td>{{ melody.type }}</td>
-            <td>{{ melody.date }}</td>
+            <td>{{ melody.date.date }}</td>
             <td><a href="edit_melody/{{melody.id}}">Изменить</a> | <a href="delete_melody/{{melody.id}}">Удалить</a></td>
             <td>{{ melody.comment }}</td>
         </tr>
