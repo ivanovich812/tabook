@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-sv#c1)a989ybje3rfs27#=o9tk@23%=w$9hibsv_xz#*n8i5j*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['tabook.pythonanywhere.com', '127.0.0.1']
 
 
 # Application definition
