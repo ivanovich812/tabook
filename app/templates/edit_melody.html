@@ -37,7 +37,7 @@
 
 <h3> Images: <a href="../../add_image/{{melody.id}}">(+)</a> </h3>
 {% for i in images %}
-    <img src=/media/{{i.path}} alt="no image" style="max-height:1000px">
+    <img src=/media/{{i.path}} alt="no image" style="max-widht:700px">
     <p>#{{i.order_num}} | {{i.image_comment}}</p>
     <a href="../../edit_image/{{melody.id}}/{{i.id}}">Изменить</a> | <a href="../../delete_image/{{i.melody_id}}/{{i.id}}">Удалить</a>
 

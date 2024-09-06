@@ -8,7 +8,7 @@
 ################################################################################
 1)Скачиваем файл db3.sqlite3 (на всякий случай) с сервера pythonanywhere.com
 2)В Pycharm делаем Commit&Push на GitHub.
-3)На сервере pythonanywhere.com заходим в Consoles и запускаем консоль
+3)Переходим на сервер pythonanywhere.com заходим в Consoles и запускаем консоль
 4)Заходим в папку проекта cd tabook (т.е команда pwd должна вернуть нам путь /home/tabook/tabook)
 5)Обновляем файлы на сервере свежими файлами из Github командой:
 git pull https://github.com/ivanovich812/tabook.git
