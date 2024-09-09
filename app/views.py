@@ -149,8 +149,12 @@ def add_image(request, id):
 
 def delete_image(request, melody_id, image_id):
     try:
-        image = Image.objects.get(id=image_id)
-        image.delete()
+        Image.objects.get(id=image_id).path.delete(save=True)
+        Image.objects.get(id=image_id).delete()
+
+        # image = Image.objects.get(id=image_id).path.delete(save=True)
+        # image.delete()
+
         return HttpResponseRedirect(f"/edit_melody/{melody_id}")
     except Tab.DoesNotExist:
         return HttpResponseNotFound("<h2>Image not found</h2>")
