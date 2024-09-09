@@ -61,6 +61,14 @@ def create_melody(request):
 
 def delete_melody(request, id):
     try:
+        # сначала удаляем все связанные картинки из сервера.
+        images = Image.objects.filter(melody_id=id)
+        for i in images:
+            image_id = i.id
+            Image.objects.get(id=image_id).path.delete(save=True)
+            Image.objects.get(id=image_id).delete()
+
+        # затем удаляем саму мелодию из БД
         melody = Melody.objects.get(id=id)
         melody.delete()
         return HttpResponseRedirect("/")
@@ -149,9 +157,11 @@ def add_image(request, id):
 
 def delete_image(request, melody_id, image_id):
     try:
+        # Если удалять и ссылку в БД и сам файл на сервере
         Image.objects.get(id=image_id).path.delete(save=True)
         Image.objects.get(id=image_id).delete()
 
+        # Если удалять только ссылку в БД (сам файл останется на сервере)
         # image = Image.objects.get(id=image_id).path.delete(save=True)
         # image.delete()
 
