@@ -1,49 +1,48 @@
-<a href="../../">главная</a> | <a href="../../show_melody/{{melody.id}}">мелодия</a> | ИЗМЕНИТЬ
+{% extends "base.html" %}
+    {% block title %} TABOOK | Изменить мелодию {% endblock title %}
+    {% block menu %} <a href="../../">главная</a> | <a href="../../show_melody/{{melody.id}}">мелодия</a> | ИЗМЕНИТЬ {% endblock menu %}
+    {% block header %} Изменить мелодии: {{melody.name}} (id-{{melody.id}}) <a href="../../show_melody/{{melody.id}}">...</a> {% endblock header %}
+    {% block content %}
+        <form method="POST">
+            {% csrf_token %}
+            <p>
+                <label>Название:</label><br>
+                <input type="text" name="melody_name" value="{{melody.name}}" />
+                <input type="submit" value="Изменить" >
+            </p>
+            <p>
+                <label>Комментарий:</label><br>
+                <input type="text" name="melody_comment" value="{{melody.comment}}" />
+                <input type="submit" value="Изменить" >
+            </p>
+        </form>
 
-<br />
+        <h3> URLs: <a href="../../add_url/{{melody.id}}">(+)</a> </h3>
+        <table>
+            <thead><th></th><th></th><th></th></thead>
+            {% for url in urls %}
+                <tr>
+                    <td><a href="{{url.url}}">{{ url.url }}</a></td>
+                    <td><a href="../../delete_url/{{url.melody_id}}/{{url.id}}">Удалить</a></td>
+                </tr>
+            {% endfor %}
+        </table>
 
-<h2>Изменение мелодии: {{melody.name}} (id-{{melody.id}}) <a href="../../show_melody/{{melody.id}}">...</a> </h2>
+        <h3> Tabs: <a href="../../add_tab/{{melody.id}}">(+)</a> </h3>
+        {% for t in tabs %}
+        <pre> {{t.tab}} </pre>
+        <a href="../../edit_tab/{{t.melody_id}}/{{t.id}}">Изменить</a> | <a href="../../delete_tab/{{t.melody_id}}/{{t.id}}">Удалить</a>
+        {% endfor %}
 
-<form method="POST">
-    {% csrf_token %}
-    <p>
-        <label>Название:</label><br>
-        <input type="text" name="melody_name" value="{{melody.name}}" />
-        <input type="submit" value="Изменить" >
-    </p>
-    <p>
-        <label>Комментарий:</label><br>
-        <input type="text" name="melody_comment" value="{{melody.comment}}" />
-        <input type="submit" value="Изменить" >
-    </p>
-</form>
+        <h3> Images: <a href="../../add_image/{{melody.id}}">(+)</a> </h3>
+        {% for i in images %}
+            <img src=/media/{{i.path}} alt="no image" style="max-widht:700px">
+            <p>#{{i.order_num}} | {{i.image_comment}}</p>
+            <p><a href="../../edit_image/{{melody.id}}/{{i.id}}">Изменить</a> | <a href="../../delete_image/{{i.melody_id}}/{{i.id}}">Удалить</a></p>
+        {% endfor %}
+    {% endblock content %}
 
-<h3> URLs: <a href="../../add_url/{{melody.id}}">(+)</a> </h3>
-<table>
-    <thead><th></th><th></th><th></th></thead>
-    {% for url in urls %}
-        <tr>
-            <td><a href="{{url.url}}">{{ url.url }}</a></td>
-            <td><a href="../../delete_url/{{url.melody_id}}/{{url.id}}">Удалить</a></td>
-        </tr>
-    {% endfor %}
-</table>
 
-<h3> Tabs: <a href="../../add_tab/{{melody.id}}">(+)</a> </h3>
-{% for t in tabs %}
-<pre> {{t.tab}} </pre>
-<a href="../../edit_tab/{{t.melody_id}}/{{t.id}}">Изменить</a> | <a href="../../delete_tab/{{t.melody_id}}/{{t.id}}">Удалить</a>
-{% endfor %}
-
-<h3> Images: <a href="../../add_image/{{melody.id}}">(+)</a> </h3>
-{% for i in images %}
-    <img src=/media/{{i.path}} alt="no image" style="max-widht:700px">
-    <p>#{{i.order_num}} | {{i.image_comment}}</p>
-    <a href="../../edit_image/{{melody.id}}/{{i.id}}">Изменить</a> | <a href="../../delete_image/{{i.melody_id}}/{{i.id}}">Удалить</a>
-
-<br />
-
-{% endfor %}
 
 
 

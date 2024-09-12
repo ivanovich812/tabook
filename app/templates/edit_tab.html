@@ -1,8 +1,18 @@
-<a href="../../../edit_melody/{{melody_id}}"><<< НАЗАД</a>
-<br />
-<h3> Изменить таб: </h3>
-<form method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-    {{ form_tab.as_p }}
-  <button type="submit">Изменить</button>
-</form>
+{% extends "base.html" %}
+    {% block title %} TABOOK | Изменить таб {% endblock title %}
+    {% block menu %} <a href="../../../edit_melody/{{melody_id}}"><<< НАЗАД</a> {% endblock menu %}
+    {% block header %} Изменить таб: {% endblock header %}
+    {% block content %}
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form_tab.as_p }}
+        <button type="submit">Изменить</button>
+      </form>
+    {% endblock content %}
+
+
+
+
+
+
+

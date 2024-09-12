@@ -1,29 +1,79 @@
-<a href="../">главная</a> | НОВАЯ МЕЛОДИЯ
-<br />
-<h3> Create melody: </h3>
-<form method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-    {{ form_melody.as_p }}
-    {{ form_url.as_p }}
-    {{ form_tab.as_p }}
-    {{ form_img.as_p }}
-  <button type="submit">Upload</button>
-</form>
-<br />
-<br />
-{% if melody_obj %}
-    <h3>Succesfully created: {{melody_obj.name}}</h3>
-{% endif %}
+{% extends "base.html" %}
+    {% block title %} TABOOK | Добавить мелодию {% endblock title %}
+    {% block menu %} <a href="../">главная</a> | НОВАЯ МЕЛОДИЯ {% endblock menu %}
+    {% block header %} Добавить мелодию: {% endblock header %}
+    {% block content %}
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
 
-{% if url_obj %}
-    <p> {{ url_obj.url}} </p>
-{% endif %}
+            {% for field in form_melody %}
+                <div class="form">
+                    {{field.label_tag}}
+                    <div>{{field}}</div>
+                </div>
+            {% endfor %}
 
-{% if tab_obj %}
-    <pre> {{ tab_obj.tab}} </pre>
-{% endif %}
+            {% for field in form_url %}
+                <div class="form">
+                    {{field.label_tag}}
+                    <div>{{field}}</div>
+                </div>
+            {% endfor %}
 
-{% if img_obj and img_obj.path %}
-    <img src="{{ img_obj.path.url}}" alt="no image" style="max-height:1000px">
-    <p> {{ img_obj.order_num}} | {{ img_obj.image_comment}} </p>
-{% endif %}
+            {% for field in form_tab %}
+                <div class="form">
+                    {{field.label_tag}}
+                    <div>{{field}}</div>
+                </div>
+            {% endfor %}
+
+            <div class="form-order-num-label">
+                {{form_img.order_num.label_tag}}
+                <div>{{form_img.order_num}}</div>
+            </div>
+            <div class="form-path">
+                {{form_img.path.label_tag}}
+                <div>{{form_img.path}}</div>
+            </div>
+            <div class="form">
+                {{form_img.image_comment.label_tag}}
+                <div>{{form_img.image_comment}}</div>
+            </div>
+
+            <div class="form">
+                <button type="submit">Upload</button>
+            </div>
+        </form>
+        <br />
+        <br />
+        {% if melody_obj %}
+            <h3>Succesfully created: {{melody_obj.name}}</h3>
+        {% endif %}
+        {% if url_obj %}
+            <p> {{ url_obj.url}} </p>
+        {% endif %}
+        {% if tab_obj %}
+            <pre> {{ tab_obj.tab}} </pre>
+        {% endif %}
+        {% if img_obj and img_obj.path %}
+            <img src="{{ img_obj.path.url}}" alt="no image" style="max-height:1000px">
+            <p> {{ img_obj.order_num}} | {{ img_obj.image_comment}} </p>
+        {% endif %}
+    {% endblock content %}
+
+
+<!--            {% for field in form_melody %}-->
+<!--                <div class="form-melody">-->
+<!--                    {{field.label_tag}}-->
+<!--                    <div>{{field}}</div>-->
+<!--                    {% if field.errors%}-->
+<!--                        {% for error in field.errors %}-->
+<!--                            <div class="alert alert-danger">-->
+<!--                            {{error}}-->
+<!--                            </div>-->
+<!--                        {% endfor %}-->
+<!--                    {% endif %}-->
+<!--                </div>-->
+<!--            {% endfor %}-->
+
+

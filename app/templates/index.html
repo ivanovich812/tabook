@@ -1,25 +1,24 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>TABOOK</title>
-</head>
-ГЛАВНАЯ |
-<body>
-    <h2>Список мелодий <a href="create_melody/">(+)</a> </h2>
+{% extends "base.html" %}
+    {% block title %} TABOOK | Список мелодий {% endblock title %}
+    {% block menu %} ГЛАВНАЯ | {% endblock menu %}
+    {% block header %} Список мелодий <a href="create_melody/">(+)</a> {% endblock header %}
+    {% block content %}
+        <body>
+            <table>
+                <thead><th>Название</th><th>Тип</th><th>Дата</th><th></th><th>Комментарий</th></thead>
+                {% for melody in melodies %}
+                <tr>
+                    <td><a href="show_melody/{{melody.id}}">{{ melody.name }}</a></td>
+                    <td>{{ melody.type }}</td>
+                    <td>{{ melody.date.date }}</td>
+                    <td><a href="edit_melody/{{melody.id}}">Изменить</a> | <a href="delete_melody/{{melody.id}}">Удалить</a></td>
+                    <td>{{ melody.comment }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </body>
+    {% endblock content %}
 
-<!--    <table style="font-size: 25px;">-->
-    <table>
-        <thead><th>Название</th><th>Тип</th><th>Дата</th><th></th><th>Комментарий</th></thead>
-        {% for melody in melodies %}
-        <tr>
-            <td><a href="show_melody/{{melody.id}}">{{ melody.name }}</a></td>
-            <td>{{ melody.type }}</td>
-            <td>{{ melody.date.date }}</td>
-            <td><a href="edit_melody/{{melody.id}}">Изменить</a> | <a href="delete_melody/{{melody.id}}">Удалить</a></td>
-            <td>{{ melody.comment }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-</body>
-</html>
+
+
+
