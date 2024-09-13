@@ -56,7 +56,7 @@
             <pre> {{ tab_obj.tab}} </pre>
         {% endif %}
         {% if img_obj and img_obj.path %}
-            <img src="{{ img_obj.path.url}}" alt="no image" style="max-height:1000px">
+            <img src="{{ img_obj.path.url}}" alt="no image">
             <p> {{ img_obj.order_num}} | {{ img_obj.image_comment}} </p>
         {% endif %}
     {% endblock content %}
