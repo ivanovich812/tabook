@@ -3,9 +3,23 @@
     {% block menu %} <a href="../../edit_melody/{{id}}"><<< НАЗАД</a> {% endblock menu %}
     {% block header %} Добавить картинку: {% endblock header %}
     {% block content %}
-      <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form_image.as_p }}
-        <button type="submit">Добавить</button>
-      </form>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-order-num-label">
+                {{form_image.order_num.label_tag}}
+                <div>{{form_image.order_num}}</div>
+            </div>
+            <div class="form-path">
+                {{form_image.path.label_tag}}
+                <div>{{form_image.path}}</div>
+            </div>
+            <div class="form">
+                {{form_image.image_comment.label_tag}}
+                <div>{{form_image.image_comment}}</div>
+            </div>
+
+            <div class="form">
+                <button type="submit">Добавить</button>
+            </div>
+        </form>
     {% endblock content %}

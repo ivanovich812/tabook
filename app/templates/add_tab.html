@@ -3,11 +3,18 @@
     {% block menu %} <a href="../../edit_melody/{{id}}"><<< НАЗАД</a> {% endblock menu %}
     {% block header %} Добавить таб: {% endblock header %}
     {% block content %}
-      <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form_tab.as_p }}
-        <button type="submit">Добавить</button>
-      </form>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form_tab %}
+                <div class="form">
+                    {{field.label_tag}}
+                    <div>{{field}}</div>
+                </div>
+            {% endfor %}
+            <div class="form">
+                <button type="submit">Добавить</button>
+            </div>
+        </form>
     {% endblock content %}
 
 

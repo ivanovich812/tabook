@@ -6,14 +6,18 @@
         <form method="POST">
             {% csrf_token %}
             <p>
-                <label>Название:</label><br>
-                <input type="text" name="melody_name" value="{{melody.name}}" />
-                <input type="submit" value="Изменить" >
+                <div class="form-name-comment">
+                    <label >Название:</label><br>
+                    <input type="text" name="melody_name" value="{{melody.name}}" />
+                    <button type="submit">Изменить</button>
+                </div>
             </p>
             <p>
-                <label>Комментарий:</label><br>
-                <input type="text" name="melody_comment" value="{{melody.comment}}" />
-                <input type="submit" value="Изменить" >
+                <div class="form-name-comment">
+                    <label>Комментарий:</label><br>
+                    <input type="text" name="melody_comment" value="{{melody.comment}}" />
+                    <button type="submit">Изменить</button>
+                </div>
             </p>
         </form>
 
