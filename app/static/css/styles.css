@@ -1,3 +1,4 @@
+/*Общее*/
 html * { max-height:999999px; }
 h2 {font-size: 48px;}
 body {font-size: 32px;}
@@ -9,7 +10,11 @@ td {
 img{
     max-width:100%;
 }
+
+/*Меню*/
 .menu {font-size: 40px;}
+
+/*Формы общие*/
 .form{margin: 20px 0; font-size: 32px;}
 .form input{width:50%;height: 50px;border-radius:3px; font-size: 32px;}
 .form select{width:25%;height: 50px;border-radius:3px; font-size: 32px;}
@@ -25,9 +30,11 @@ img{
     font-size: 32px;
 }
 
+/*Форма ввода порядкового номера*/
 .form-order-num-label{margin: 20px 0; font-size: 32px;}
 .form-order-num-label input{width:5%;height: 50px;border-radius:3px; font-size: 32px;}
 
+/*Форма выбора пути сохранения картинки*/
 .form-path label{
     appearance: none;
     border: 0;
@@ -46,6 +53,7 @@ img{
     height: 0;
 }
 
+/*Форма редактирования имени мелодии и комментария*/
 .form-name-comment{margin: 20px 0; font-size: 32px;}
 .form-name-comment input{width:50%;height: 50px;border-radius:3px; font-size: 32px;}
 .form-name-comment button{
