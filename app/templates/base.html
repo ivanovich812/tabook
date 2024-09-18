@@ -1,70 +1,10 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
 <head>
     <!--<meta charset="utf-8" />-->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
     <title>{% block title %}TABOOK{% endblock title %}</title>
-    <style>
-        html * { max-height:999999px; }
-        h2 {font-size: 48px;}
-        body {font-size: 32px;}
-        pre {font-size: 40px;}
-        td {
-          padding: 10px;
-          padding-left: 20px;
-        }
-        img{
-            max-width:100%;
-        }
-        .menu {font-size: 40px;}
-        .form{margin: 20px 0; font-size: 32px;}
-        .form input{width:50%;height: 50px;border-radius:3px; font-size: 32px;}
-        .form select{width:25%;height: 50px;border-radius:3px; font-size: 32px;}
-        .form textarea{width:50%;height: 500px;border-radius:3px; font-size: 40px;}
-        .form button{
-            appearance: none;
-            border: 0;
-            border-radius: 5px;
-            background: #419152;
-            color: #fff;
-            width: 300px;
-            height: 100px;
-            font-size: 32px;
-        }
-
-        .form-order-num-label{margin: 20px 0; font-size: 32px;}
-        .form-order-num-label input{width:5%;height: 50px;border-radius:3px; font-size: 32px;}
-
-        .form-path label{
-            appearance: none;
-            border: 0;
-            border-radius: 5px;
-            background: #4676D7;
-            color: #fff;
-            padding: 16px 32px;
-            font-size: 32px;
-        }
-        .form-path input[type=file] {
-            position: absolute;
-            z-index: -1;
-            opacity: 0;
-            display: block;
-            width: 0;
-            height: 0;
-        }
-
-        .form-name-comment{margin: 20px 0; font-size: 32px;}
-        .form-name-comment input{width:50%;height: 50px;border-radius:3px; font-size: 32px;}
-        .form-name-comment button{
-            appearance: none;
-            border: 0;
-            border-radius: 5px;
-            background: #4676D7;
-            color: #fff;
-            width: 200px;
-            height: 75px;
-            font-size: 32px;
-        }
-    </style>
 </head>
 <body>
     <div class="menu">{% block menu %}{% endblock menu %}</div>
