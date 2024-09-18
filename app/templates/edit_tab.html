@@ -3,7 +3,7 @@
     {% block menu %} <a href="../../../edit_melody/{{melody_id}}"><<< НАЗАД</a> {% endblock menu %}
     {% block header %} Изменить таб: {% endblock header %}
     {% block content %}
-        <form method="post" enctype="multipart/form-data">
+        <form method="post" autocorrect="off" enctype="multipart/form-data">
             {% csrf_token %}
             {% for field in form_tab %}
                 <div class="form">

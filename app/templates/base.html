@@ -1,32 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <!--<meta charset="utf-8" />-->
     <title>{% block title %}TABOOK{% endblock title %}</title>
     <style>
-        h2 {font-size: 150%;}
-        table {font-size: 150%;}
-        img{
-            max-width:720px;
+        html * { max-height:999999px; }
+        h2 {font-size: 48px;}
+        body {font-size: 32px;}
+        pre {font-size: 40px;}
+        td {
+          padding: 10px;
+          padding-left: 20px;
         }
-        .menu {font-size: 150%;}
-        .form{margin: 20px 0; font-size: 100%;}
-        .form input{width:50%;height: 50px;border-radius:3px; font-size: 100%;}
-        .form select{width:25%;height: 50px;border-radius:3px; font-size: 100%;}
-        .form textarea{width:50%;height: 200px;border-radius:3px; font-size: 200%;}
+        img{
+            max-width:100%;
+        }
+        .menu {font-size: 40px;}
+        .form{margin: 20px 0; font-size: 32px;}
+        .form input{width:50%;height: 50px;border-radius:3px; font-size: 32px;}
+        .form select{width:25%;height: 50px;border-radius:3px; font-size: 32px;}
+        .form textarea{width:50%;height: 500px;border-radius:3px; font-size: 40px;}
         .form button{
             appearance: none;
             border: 0;
             border-radius: 5px;
             background: #419152;
             color: #fff;
-            width: 10%;
-            height: 50px;
-            font-size: 100%;
+            width: 300px;
+            height: 100px;
+            font-size: 32px;
         }
 
-        .form-order-num-label{margin: 20px 0; font-size: 100%;}
-        .form-order-num-label input{width:5%;height: 50px;border-radius:3px; font-size: 100%;}
+        .form-order-num-label{margin: 20px 0; font-size: 32px;}
+        .form-order-num-label input{width:5%;height: 50px;border-radius:3px; font-size: 32px;}
 
         .form-path label{
             appearance: none;
@@ -34,8 +40,8 @@
             border-radius: 5px;
             background: #4676D7;
             color: #fff;
-            padding: 8px 16px;
-            font-size: 100%;
+            padding: 16px 32px;
+            font-size: 32px;
         }
         .form-path input[type=file] {
             position: absolute;
@@ -46,16 +52,17 @@
             height: 0;
         }
 
-        .form-name-comment input{width:50%;height: 50px;border-radius:3px; font-size: 100%;}
+        .form-name-comment{margin: 20px 0; font-size: 32px;}
+        .form-name-comment input{width:50%;height: 50px;border-radius:3px; font-size: 32px;}
         .form-name-comment button{
             appearance: none;
             border: 0;
             border-radius: 5px;
             background: #4676D7;
             color: #fff;
-            width: 100px;
-            height: 50px;
-            font-size: 100%;
+            width: 200px;
+            height: 75px;
+            font-size: 32px;
         }
     </style>
 </head>
