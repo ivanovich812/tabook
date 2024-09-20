@@ -59,33 +59,38 @@ def create_melody(request):
         'form_img': form_img,
         'form_url': form_url})
 
-def delete_melody(request, id):
+def confirm_delete(request, id):
+    """Confirm to delete a melody"""
     try:
-        # сначала удаляем все связанные картинки из сервера.
-        images = Image.objects.filter(melody_id=id)
-        for i in images:
-            image_id = i.id
-            Image.objects.get(id=image_id).path.delete(save=True)
-            Image.objects.get(id=image_id).delete()
-
-        # затем удаляем саму мелодию из БД
         melody = Melody.objects.get(id=id)
-        melody.delete()
-        return HttpResponseRedirect("/")
+        if request.method == "POST":
+            delete_melody(request, id)
+            return HttpResponseRedirect("/")
+        else:
+            return render(request, "confirm_delete.html", {"melody": melody})
     except Tab.DoesNotExist:
         return HttpResponseNotFound("<h2>Melody not found</h2>")
+
+
+def delete_melody(request, id):
+    # сначала удаляем все связанные картинки из сервера.
+    images = Image.objects.filter(melody_id=id)
+    for i in images:
+        image_id = i.id
+        Image.objects.get(id=image_id).path.delete(save=True)
+        Image.objects.get(id=image_id).delete()
+
+    # затем удаляем саму мелодию из БД
+    melody = Melody.objects.get(id=id)
+    melody.delete()
+
 
 def show_melody(request, id):
     """Show to melody uploaded by users"""
     melody = Melody.objects.filter(id=id)[0]
     urls = URL.objects.filter(melody_id=id)
     tabs = Tab.objects.filter(melody_id=id)
-    # images = Image.objects.filter(melody_id=id)
     images = Image.objects.filter(melody_id=id).order_by("order_num")
-
-    # for i in images:
-    #     print(i.order_num)
-
     return render(request, 'show_melody.html', {'melody': melody, 'urls': urls, 'tabs': tabs, 'images': images})
 
 def edit_melody(request, id):
@@ -100,10 +105,6 @@ def edit_melody(request, id):
             melody.name = request.POST.get("melody_name")
             melody.comment = request.POST.get("melody_comment")
             melody.save()
-
-            # image.order_num = request.POST.get("order_num")
-            # image.comment = request.POST.get("image_comment")
-            # image.save()
             return HttpResponseRedirect(f"/edit_melody/{id}")
         else:
             return render(request, "edit_melody.html", {"melody": melody, "urls": urls, "tabs": tabs, "images": images})

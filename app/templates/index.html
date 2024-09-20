@@ -11,7 +11,8 @@
                     <td><a href="show_melody/{{melody.id}}">{{ melody.name }}</a></td>
                     <td>{{ melody.type }}</td>
                     <td>{{ melody.date.date }}</td>
-                    <td><a href="edit_melody/{{melody.id}}">Edit</a> | <a href="delete_melody/{{melody.id}}">Del</a></td>
+<!--                    <td><a href="edit_melody/{{melody.id}}">Edit</a> | <a href="delete_melody/{{melody.id}}">Del</a></td>-->
+                    <td><a href="edit_melody/{{melody.id}}">Edit</a> | <a href="confirm_delete/{{melody.id}}">Del</a></td>
                 </tr>
                 {% endfor %}
             </table>

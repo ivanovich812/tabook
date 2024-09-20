@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+    {% block title %} TABOOK | Подтверждение удаления {% endblock title %}
+
+    {% block header %} Подвердить удаление мелодии: <br /> {{melody.name}} (id-{{melody.id}}) {% endblock header %}
+
+    {% block content %}
+        <form method="POST">
+            {% csrf_token %}
+            <p>
+                <div class="form-confirm-delete">
+                    <button type="submit">Удалить</button> &nbsp &nbsp
+                    <a href="../../">Нет, спасибо!</a>
+                </div>
+            </p>
+        </form>
+    {% endblock content %}
