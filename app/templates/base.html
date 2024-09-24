@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 {% load static %}
 <html>
-<head>
-    <!--<meta charset="utf-8" />-->
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-    <title>{% block title %}TABOOK{% endblock title %}</title>
-</head>
-<body>
-    <div class="menu">{% block menu %}{% endblock menu %}</div>
-    <h2>{% block header %}{% endblock header %}</h2>
-    <div>{% block content%}{% endblock content %}</div>
-</body>
+    <head>
+        <!--<meta charset="utf-8" />-->
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+        <title>{% block title %}TABOOK{% endblock title %}</title>
+    </head>
+    <body>
+        <div>
+            {% if user.is_authenticated %}
+            user: {{ user.get_username }}
+                <a href="{% url 'logout'%}?next={{request.path}}">logout</a>
+            {% else %}
+                <a href="{% url 'login'%}?next={{request.path}}">login</a>
+            {% endif %}
+        </div>
+        </br>
+        <div class="menu">{% block menu %}{% endblock menu %}</div>
+        <h2>{% block header %}{% endblock header %}</h2>
+        <div>{% block content%}{% endblock content %}</div>
+    </body>
 </html>

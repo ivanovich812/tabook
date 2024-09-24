@@ -5,12 +5,14 @@ from django.http import HttpResponseRedirect, HttpResponseNotFound
 from django.shortcuts import render
 from .forms import MelodyForm, ImageForm, TabForm, URLForm
 from .models import Melody, Image, Tab, URL
+from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def index(request):
     melodies = Melody.objects.all()
     return render(request, "index.html", {"melodies": melodies})
 
+@login_required
 def create_melody(request):
     if request.method == 'POST':
         form_melody = MelodyForm(request.POST)
@@ -59,6 +61,7 @@ def create_melody(request):
         'form_img': form_img,
         'form_url': form_url})
 
+@login_required
 def confirm_delete(request, id):
     """Confirm to delete a melody"""
     try:
@@ -71,7 +74,7 @@ def confirm_delete(request, id):
     except Tab.DoesNotExist:
         return HttpResponseNotFound("<h2>Melody not found</h2>")
 
-
+@login_required
 def delete_melody(request, id):
     # сначала удаляем все связанные картинки из сервера.
     images = Image.objects.filter(melody_id=id)
@@ -84,7 +87,7 @@ def delete_melody(request, id):
     melody = Melody.objects.get(id=id)
     melody.delete()
 
-
+@login_required
 def show_melody(request, id):
     """Show to melody uploaded by users"""
     melody = Melody.objects.filter(id=id)[0]
@@ -93,6 +96,7 @@ def show_melody(request, id):
     images = Image.objects.filter(melody_id=id).order_by("order_num")
     return render(request, 'show_melody.html', {'melody': melody, 'urls': urls, 'tabs': tabs, 'images': images})
 
+@login_required
 def edit_melody(request, id):
     """Edit to melody"""
     try:
@@ -111,6 +115,7 @@ def edit_melody(request, id):
     except Tab.DoesNotExist:
         return HttpResponseNotFound("<h2>Melody not found</h2>")
 
+@login_required
 def add_url(request, id):
     if request.method == 'POST':
         form_url = URLForm(request.POST)
@@ -125,6 +130,7 @@ def add_url(request, id):
         form_url = URLForm()
         return render(request, 'add_url.html', {'form_url': form_url, 'id':id})
 
+@login_required
 def delete_url(request, melody_id, url_id):
     try:
         url = URL.objects.get(id=url_id)
@@ -133,6 +139,7 @@ def delete_url(request, melody_id, url_id):
     except Tab.DoesNotExist:
         return HttpResponseNotFound("<h2>Melody not found</h2>")
 
+@login_required
 def add_image(request, id):
     images = Image.objects.filter(melody_id=id).order_by("order_num")
     if images:
@@ -156,6 +163,7 @@ def add_image(request, id):
         form_image = ImageForm(initial={'order_num': max_order_num+1})
         return render(request, 'add_image.html', {'form_image': form_image, 'id':id})
 
+@login_required
 def delete_image(request, melody_id, image_id):
     try:
         # Если удалять и ссылку в БД и сам файл на сервере
@@ -170,6 +178,7 @@ def delete_image(request, melody_id, image_id):
     except Tab.DoesNotExist:
         return HttpResponseNotFound("<h2>Image not found</h2>")
 
+@login_required
 def edit_image(request, melody_id, image_id):
     image = Image.objects.get(id=image_id)
     path = image.path
@@ -190,6 +199,7 @@ def edit_image(request, melody_id, image_id):
         # form_melody = MelodyForm(initial={'date': datetime.datetime.now()})
         return render(request, 'edit_image.html', {'form_image': form_image, 'melody_id': melody_id, 'image_id': image_id})
 
+@login_required
 def add_tab(request, id):
     pass
     if request.method == 'POST':
@@ -205,6 +215,7 @@ def add_tab(request, id):
         form_tab = TabForm()
         return render(request, 'add_tab.html', {'form_tab': form_tab, 'id':id})
 
+@login_required
 def delete_tab(request, melody_id, tab_id):
     try:
         tab = Tab.objects.get(id=tab_id)
@@ -213,6 +224,7 @@ def delete_tab(request, melody_id, tab_id):
     except Tab.DoesNotExist:
         return HttpResponseNotFound("<h2>Tab not found</h2>")
 
+@login_required
 def edit_tab(request, melody_id, tab_id):
     tab = Tab.objects.get(id=tab_id)
     if request.method == 'POST':

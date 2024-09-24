@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <!--<meta charset="utf-8" />-->
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+        <title>{% block title %}TABOOK authorization{% endblock title %}</title>
+    </head>
+    <body>
+        <h2>{% block header %}{% endblock header %}</h2>
+        <div>{% block content%}{% endblock content %}</div>
+    </body>
+</html>

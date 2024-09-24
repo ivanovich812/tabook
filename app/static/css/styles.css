@@ -78,3 +78,20 @@ img{
     height: 75px;
     font-size: 32px;
 }
+
+/*Форма авторизации*/
+.form-auth{margin: 20px 0; font-size: 32px;}
+.form-auth input{width:50%; height: 50px; border-radius:3px; font-size: 32px;}
+
+/*Кнопка login авторизации*/
+.form-auth-btn input {
+    margin: 20px 20px 20px 100px;
+    appearance: none;
+    border: 0;
+    border-radius: 5px;
+    background: #419152;
+    color: #fff;
+    width: 200px;
+    height: 75px;
+    font-size: 32px;
+}
