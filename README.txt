@@ -14,7 +14,8 @@ git add media/images
 3) снова git status
 4) git commit -m 'some comment'
 5) git push origin master
-6) проверяем изменения на GitHub.com
+6) вводим login (как обычно) и токен вместо пароля 
+7) проверяем изменения на GitHub.com
 
 * Теперь можно обновить базу данных и картинки на PyCharm.
 0) остановить локальный сервер
